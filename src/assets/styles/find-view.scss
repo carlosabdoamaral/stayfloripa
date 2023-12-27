@@ -1,0 +1,19 @@
+.find-wrapper {
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2em;
+
+  margin: 10em auto;
+
+  .title {
+    color: #294090;
+
+    small {
+      text-transform: uppercase;
+    }
+  }
+}

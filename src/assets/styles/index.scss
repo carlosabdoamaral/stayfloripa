@@ -1,0 +1,56 @@
+@import "./colors.scss";
+
+* {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playfair Display", serif !important;
+}
+
+.default-input {
+  border: 0.5px solid var(--bs-border-width) solid var(--bs-border-color) !important;
+
+  * {
+    border-radius: 0 !important;
+    color: $blue !important;
+  }
+
+  .input-group-text {
+    background: transparent !important;
+    border-left: none !important;
+
+    :hover {
+      cursor: pointer;
+    }
+  }
+
+  input {
+    padding: 1em !important;
+    border-right: none !important;
+  }
+
+  input:focus {
+    box-shadow: none !important;
+    border-color: var(--bs-border-color);
+  }
+
+  ::placeholder {
+    color: $blue !important;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+
+.cell-button {
+  border-radius: 100em !important;
+  padding: .5em 2em;
+}

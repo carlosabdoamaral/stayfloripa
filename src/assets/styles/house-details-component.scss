@@ -1,0 +1,30 @@
+.whatsapp-btn {
+  background: #23d366 !important;
+}
+
+.email-btn {
+  background: #000 !important;
+}
+
+.whatsapp-btn,
+.email-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  height: 50px;
+  gap: 12px;
+
+  color: #fff;
+
+  cursor: pointer;
+
+  img {
+    height: 90%;
+  }
+
+  p {
+    margin: auto 0;
+  }
+}

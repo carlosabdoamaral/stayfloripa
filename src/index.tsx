@@ -1,19 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
+
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+// import { firebaseConfig } from "./firebase";
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import { HomeView } from "./views/home/home";
+import "./assets/styles/index.scss";
+import { ToastContainer } from "react-bootstrap";
+import React from "react";
+import App from "./app";
+
+// const app = initializeApp(firebaseConfig);
+// getAnalytics(app);
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
+    <ToastContainer />
     <App />
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

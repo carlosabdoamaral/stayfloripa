@@ -1,0 +1,36 @@
+.carousel-item {
+  .carousel-item-wrapper {
+    margin: 0 auto;
+    color: #fff;
+    height: 100dvh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.25)),
+      url("../images/house.webp");
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    .title {
+      font-size: 2rem;
+      padding-top: 2em;
+
+      h5 {
+        font-family: "Jost" !important;
+        font-weight: 200;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* number of lines to show */
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        margin: 0 auto;
+      }
+    }
+  }
+}
