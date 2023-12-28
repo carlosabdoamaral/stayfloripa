@@ -1,4 +1,4 @@
-export interface HouseDetailsI {
+export interface HomeDetailsI {
   id: number;
   name: string;
   pricePerNight: number;
@@ -9,12 +9,14 @@ export interface HouseDetailsI {
   rules: Rules;
   responsible: Responsible;
 }
+
 interface Responsible {
   name: string;
   email: string;
   phone: string;
   obs: string;
 }
+
 interface Rules {
   checkInOut: string[];
   duringStay: DuringStay;
@@ -23,20 +25,25 @@ interface Rules {
   additional: any[];
   maxGuests: number;
 }
+
 interface BeforeLeaving {
   list: string[];
 }
+
 interface DuringStay {
   list: string[];
   forbidden: string[];
 }
+
 interface Location {
   cep: string;
   neighborhood: string;
   address: string;
   lat: string;
   lng: string;
+  iframeSource: string;
 }
+
 interface About {
   general: string;
   space: string;
@@ -44,6 +51,7 @@ interface About {
   other: string;
   count: Count;
 }
+
 interface Count {
   bedrooms: number;
   bed: number;

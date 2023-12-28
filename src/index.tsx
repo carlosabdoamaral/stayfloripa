@@ -9,7 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import "./assets/styles/index.scss";
 import { ToastContainer } from "react-bootstrap";
 import React from "react";
-import App from "./app";
+import App from "./App";
 
 // const app = initializeApp(firebaseConfig);
 // getAnalytics(app);

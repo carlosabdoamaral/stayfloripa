@@ -1,4 +1,5 @@
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import "./component.scss";
 
 const libraries: any = [];
 const mapContainerStyle = {
@@ -10,7 +11,7 @@ const center = {
   lng: 80.6337262, // default longitude
 };
 
-export const CustomMap = () => {
+export const MapComponent = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "YOUR_API_KEY",
     libraries,

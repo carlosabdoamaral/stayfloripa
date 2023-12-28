@@ -1,7 +1,7 @@
 import { Accordion, ListGroup } from "react-bootstrap";
-import { HouseDetailsProps } from "./house-details";
+import { HomeDetailsModalPropsI } from "../../../models/interfaces/home-details-modal.props";
 
-export function renderRulesSection(props: HouseDetailsProps) {
+export function HomeDetailsModalRulesSection(props: HomeDetailsModalPropsI) {
   function renderList(
     items: string[],
     iconName: string | null,

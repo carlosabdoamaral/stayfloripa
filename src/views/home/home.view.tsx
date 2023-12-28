@@ -1,14 +1,14 @@
-import "../../assets/styles/home-view.scss";
+import "./home.view.scss";
 import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import housesJson from "../../assets/json/houses.json";
+import housesJson from "../../assets/json/data.json";
+import { HomeDetailsI } from "../../models/interfaces/home-details";
+import { FormatterService } from "../../services/formatter.service";
 import { Button } from "react-bootstrap";
-import { HouseDetails } from "../../components/house-details/house-details";
-import { HouseDetailsI } from "../../interfaces/house-details";
-import { toBRL } from "../../utils/calc-rent-price";
+import { HomeDetailsModal } from "../../modals/home-details/modal";
 
 export function HomeView() {
-  const houses: HouseDetailsI[] = housesJson;
+  const houses: HomeDetailsI[] = housesJson;
 
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -31,8 +31,9 @@ export function HomeView() {
   };
 
   const [mustShowOffCanvas, setMustShowOffCanvas] = useState<boolean>(false);
-  const [offCanvasDetails, setOffCanvasDetails] =
-    useState<HouseDetailsI | null>(null);
+  const [offCanvasDetails, setOffCanvasDetails] = useState<HomeDetailsI | null>(
+    null
+  );
 
   const [index, setIndex] = useState<number>(0);
   const handleSelect = (selectedIndex: any) => {
@@ -51,16 +52,18 @@ export function HomeView() {
     setOffCanvasDetails(null);
   };
 
+  const _formatterService = new FormatterService();
+
   return (
-    <>
+    <div>
       <Carousel activeIndex={index} onSelect={handleSelect}>
-        {houses.map((house: HouseDetailsI, i: number) => (
+        {houses.map((house: HomeDetailsI, i: number) => (
           <Carousel.Item className="carousel-item" key={i}>
             <div className="carousel-item-wrapper">
               <div className="spacer"></div>
               <div className="title">
                 <h1>{house.name}</h1>
-                <h5 className="w-50">{toBRL(house.pricePerNight)} por noite</h5>
+                <h5 className="w-50">{_formatterService.toBRL(house.pricePerNight)} por noite</h5>
               </div>
               <div className="spacer"></div>
               <Button
@@ -77,7 +80,7 @@ export function HomeView() {
         ))}
       </Carousel>
 
-      <HouseDetails
+      <HomeDetailsModal
         name={name}
         setName={setName}
         email={email}
@@ -97,6 +100,6 @@ export function HomeView() {
         onHide={handleClose}
         handleClear={handleClear}
       />
-    </>
+    </div>
   );
 }

@@ -1,60 +1,18 @@
 import { Accordion, Button, Col, Container, Row } from "react-bootstrap";
-import { HouseDetailsProps } from "./house-details";
-import whatsappIcon from "../../assets/icons/whatsapp_ic.svg";
 import { Form } from "react-bootstrap";
-import { ChangeEventHandler } from "react";
-import {
-  HandleSendRentMessage,
-  RentMessageTypes,
-} from "../../utils/handle-submit";
+import { HomeDetailsModalPropsI } from "../../../models/interfaces/home-details-modal.props";
+import { RentContactTypes } from "../../../models/interfaces/rent-contact-types";
+import { RentService } from "../../../services/rent.service";
+import { RenderFieldProps } from "../../../models/interfaces/home-details-modal-rent.props";
+import { DateFormats } from "../../../models/enums/date";
 import moment from "moment";
-import { DateFormats } from "../../enums/date";
-import { CalcRentPrice } from "../../utils/calc-rent-price";
 
-interface RenderFieldProps {
-  type: string;
-  placeholder: string;
-  label: string;
-  value: any;
-  disabled: boolean;
-  required: boolean;
-  onChange: ChangeEventHandler<any>;
-  max: string | number | undefined;
-  min: string | number | undefined;
-}
+export function HomeDetailsModalRentSection(props: HomeDetailsModalPropsI) {
+  const _service = new RentService();
 
-interface RenderButtonProps {
-  className: string;
-  text: string;
-  icon: any;
-  img: any;
-  onClick: Function | null;
-  type: "button" | "submit" | "reset" | undefined;
-}
-
-function RentActionButton(props: RenderButtonProps) {
-  return (
-    <Button
-      type={props.type}
-      className={`${props.className} w-100`}
-      onClick={() => {
-        if (props.onClick) props.onClick();
-      }}
-    >
-      {!!props.img ? (
-        <img src={props.img} alt="" />
-      ) : (
-        <span className="material-symbols-outlined">{props.icon}</span>
-      )}
-      <p>{props.text}</p>
-    </Button>
-  );
-}
-
-export function renderRentSection(props: HouseDetailsProps) {
-  function renderField(props: RenderFieldProps) {
+  const renderField = (props: RenderFieldProps) => {
     return (
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form.Group className="mb-3">
         <Form.Label>
           <small className="text-muted">{props.label}</small>
         </Form.Label>
@@ -71,7 +29,7 @@ export function renderRentSection(props: HouseDetailsProps) {
         />
       </Form.Group>
     );
-  }
+  };
 
   function renderAboutYouFields() {
     return (
@@ -106,7 +64,7 @@ export function renderRentSection(props: HouseDetailsProps) {
 
   function renderAboutRentFields() {
     return (
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+      <Form.Group className="mb-3">
         <h6>Sobre a estadia</h6>
         <Row className="mb-3">
           <Col>
@@ -149,6 +107,18 @@ export function renderRentSection(props: HouseDetailsProps) {
                 : "",
               onChange: (e) => {
                 props.setStartDate(e.target.value);
+
+                if (!!e.target.value && !!props.endDate) {
+                  const finalValue = _service.calcFinalValue({
+                    startDate: new Date(e.target.value),
+                    endDate: new Date(props.endDate),
+                    pricePerNight: props.house?.pricePerNight,
+                  });
+
+                  props.setFinalValue(finalValue);
+                } else {
+                  props.setFinalValue("Selecione as datas para calcular");
+                }
               },
             } as RenderFieldProps)}
           </Col>
@@ -165,26 +135,20 @@ export function renderRentSection(props: HouseDetailsProps) {
                 : moment(new Date()).format(DateFormats.YYYYY_MM_DD),
               onChange: (e) => {
                 props.setEndDate(e.target.value);
+
+                if (!!e.target.value && !!props.startDate) {
+                  const finalValue = _service.calcFinalValue({
+                    startDate: new Date(props.startDate),
+                    endDate: new Date(e.target.value),
+                    pricePerNight: props.house?.pricePerNight,
+                  });
+
+                  props.setFinalValue(finalValue);
+                } else {
+                  props.setFinalValue("Selecione as datas para calcular");
+                }
               },
             } as RenderFieldProps)}
-          </Col>
-
-          <Col xs={3}>
-            <Form.Group>
-              <Form.Label>
-                <small className="text-muted">Ação</small>
-              </Form.Label>
-            </Form.Group>
-            <Button
-              className="w-100"
-              variant="dark"
-              onClick={() => {
-                let res = CalcRentPrice(props);
-                props.setFinalValue(res);
-              }}
-            >
-              Calcular
-            </Button>
           </Col>
         </Row>
 
@@ -205,7 +169,7 @@ export function renderRentSection(props: HouseDetailsProps) {
 
   function renderNotesField() {
     return (
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+      <Form.Group className="mb-3">
         <h6>Observações</h6>
 
         <Form.Control
@@ -224,40 +188,37 @@ export function renderRentSection(props: HouseDetailsProps) {
     <Accordion.Item eventKey={"rent"}>
       <Accordion.Header>Alugar</Accordion.Header>
       <Accordion.Body>
-        <Form>
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            _service.sendMessage(RentContactTypes.PHONE, props);
+          }}
+        >
           {renderAboutYouFields()}
           <Container className="my-5" />
           {renderAboutRentFields()}
           <Container className="my-5" />
           {renderNotesField()}
-        </Form>
 
-        <Row>
-          <Col>
-            <RentActionButton
-              className={"email-btn"}
-              text={"Enviar email"}
-              icon={"mail"}
-              img={null}
-              type="button"
-              onClick={() => {
-                HandleSendRentMessage(RentMessageTypes.EMAIL, props);
-              }}
-            />
-          </Col>
-          <Col>
-            <RentActionButton
-              className={"whatsapp-btn"}
-              text={"Enviar mensagem"}
-              icon={null}
-              img={whatsappIcon}
-              type="submit"
-              onClick={() => {
-                HandleSendRentMessage(RentMessageTypes.PHONE, props);
-              }}
-            />
-          </Col>
-        </Row>
+          <Row>
+            <Col>
+              <Button
+                type={"button"}
+                className={`clear-btn w-100`}
+                onClick={() => {
+                  props.handleClear();
+                }}
+              >
+                <p>Limpar</p>
+              </Button>
+            </Col>
+            <Col>
+              <Button type={"submit"} className={`whatsapp-btn w-100`}>
+                <p>Conversar no whatsapp</p>
+              </Button>
+            </Col>
+          </Row>
+        </Form>
       </Accordion.Body>
     </Accordion.Item>
   );
