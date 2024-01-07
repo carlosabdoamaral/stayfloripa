@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:StayFloripa/models/home_model.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:StayFloripa/components/main_house_component.dart';
+import 'package:StayFloripa/models/house_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,16 +14,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<dynamic> houses = [];
-  dynamic selectedHouse = {};
+  List<HouseDetailsModel> houses = [];
+  HouseDetailsModel selectedHouse = HouseDetailsModel();
+  bool shouldRenderMainHouse = true;
 
   getHouses() async {
-    final String response = await rootBundle.loadString('assets/houses.json');
+    final String response = await rootBundle.loadString('assets/data.json');
     final data = await json.decode(response);
 
+    List<HouseDetailsModel> housesFormatted = [];
+    for (var element in data) {
+      housesFormatted.add(HouseDetailsModel.fromJson(element));
+    }
+
     setState(() {
-      houses = data;
-      selectedHouse = data[0];
+      houses = housesFormatted;
+      selectedHouse = housesFormatted[0];
     });
   }
 
@@ -34,119 +40,61 @@ class _HomePageState extends State<HomePage> {
   @override
   initState() {
     getHouses();
-
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    double deviceHeight = MediaQuery.of(context).size.height;
+    double deviceWith = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("StayFloripa"),
-        centerTitle: false,
+        title: Text(
+          "StayFloripa.",
+          style: GoogleFonts.merriweather(),
+        ),
+        centerTitle: true,
       ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CarouselSlider(
-              options: CarouselOptions(
-                height: MediaQuery.of(context).size.height * 0.3,
-                aspectRatio: 4 / 3,
-                viewportFraction: 01,
-                initialPage: 0,
-                enableInfiniteScroll: true,
-                reverse: false,
-                autoPlay: true,
-                autoPlayInterval: const Duration(seconds: 3),
-                autoPlayAnimationDuration: const Duration(seconds: 1),
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enlargeCenterPage: true,
-                enlargeFactor: 0.3,
-                scrollDirection: Axis.horizontal,
-              ),
-              items: houses.map(
-                (h) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: Image(
-                          image: getHouseImage(h),
-                          fit: BoxFit.cover,
-                        ),
-                      );
-                    },
-                  );
-                },
-              ).toList(),
-            ),
-            const SizedBox(height: 10),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    selectedHouse['name'] ?? "Casa",
-                    style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextFormField(
+                    initialValue: '',
+                    decoration: const InputDecoration(
+                      labelText: 'Busque por uma casa',
+                      border: InputBorder.none,
+                      suffixIcon: Icon(
+                        Icons.search,
+                      ),
                     ),
                   ),
-                  Text(
-                    selectedHouse["about"]["general"] ?? "Descrição",
-                    style: GoogleFonts.poppins(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Text(
-                        "R\$ ${selectedHouse['pricePerNight'] ?? 0}",
-                        style: GoogleFonts.poppins(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Text(
-                        "/noite",
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const Spacer(),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                width: MediaQuery.of(context).size.width * 0.5,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(100),
                 ),
-                child: Text(
-                  "Ver detalhes",
-                  textAlign: TextAlign.center,
+                SizedBox(height: deviceHeight * 0.03),
+                Text(
+                  "Recomendadas",
                   style: GoogleFonts.poppins(
-                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
-              ),
-            )
-          ],
+                SizedBox(height: deviceHeight * 0.01),
+                if (shouldRenderMainHouse) MainHouseComponent(house: houses[0]),
+                SizedBox(height: deviceHeight * 0.06),
+              ],
+            ),
+          ),
         ),
       ),
     );

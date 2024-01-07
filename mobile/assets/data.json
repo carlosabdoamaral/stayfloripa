@@ -1,0 +1,73 @@
+[
+  {
+    "id": 1,
+    "title": "Piscina e Natureza em um só Lugar!",
+    "description": "Desconecte-se da rotina e entre em contato com a natureza. Nossa casa além de ser um ambiente silencioso, oferece diversão para todas as idades, piscina, parquinho, churrasqueira, entre inúmeros outros. O lazer é garantido! Nos localizamos em um condomínio residencial familiar, próximos das praias Canasvieiras e Jurerê. Uma experiência única aguarda por você e sua família.",
+    "price": 1000.0,
+    "maxGuests": 10,
+
+    "contact": {
+      "name": "Dayana dos Santos Bernardo",
+      "email": "support@stayfloripa.com",
+      "phone": "5548991462822",
+      "obs": "55 48 99146-2822"
+    },
+
+    "about": {
+      "space": "Casa situada na Vargem Pequena, bairro conhecido por sua segurança e tranquilidade. Ela possui dois andares, contendo uma cozinha ampla, lago no interior da casa, sala de estar, salão de festa, entre outros cômodos. Está localizada a 1,7Km da SC-401 a principal via de acesso ao centro da cidade e praias do Norte da Ilha.",
+      "access": "Acesso total aos cômodos, apenas sendo restrito 3 armários na lavanderia e 3 nos quartos, estando disponível 5 armários grandes no total.",
+      "notes": "A casa possui na parte externa, abelhas sem ferrão de vários tipos em caixas separadas, galinheiro, viveiros."
+    },
+
+    "count": {
+      "bedrooms": 4,
+      "beds": 7,
+      "bathrooms": 3
+    },
+
+    "location": {
+      "address": "Estrada Manoel Leôncio de Souza Brito, 1770",
+      "neighborhood": "Vargem Pequena",
+      "city": "Florianópolis",
+      "state": "SC",
+      "country": "BR",
+      "zip": "88052-400"
+    },
+
+    "checkInOut": {
+      "checkIn": "Após as 15:00h",
+      "checkOut": "Antes das 11:00h"
+    },
+
+    "rules": {
+      "during": {
+        "list": [
+          "Máximo de 10 hóspedes",
+          "Permitido animais de estimação",
+          "Horário de silêncio: 23:00 - 07:00",
+          "Não são permitidas festas ou eventos",
+          "Fotografia comercial permitida",
+          "É permitido fumar",
+          "Um cuidador irá entrar na parte externa da casa no período da manhã para alimentar os animais a cada 2 dias",
+          "Caso algum utensílio seja quebrado, nos comunique."
+        ],
+        "forbidden": [
+          "Alimentar os animais da residência.",
+          "Colocar animais dentro da piscina.",
+          "Eventos dentro e/ou fora da residência.",
+          "Fumar na parte interna da residência."
+        ]
+      },
+      "beforeLeaving": {
+        "list": [
+          "Devolva as chaves",
+          "Deixar louças e utensílios domésticos limpos."
+        ]
+      }
+    },
+
+    "cancellationPolicy": {
+      "list": ["Teste"]
+    }
+  }
+]
