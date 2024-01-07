@@ -1,8 +1,7 @@
-import 'package:StayFloripa/common/currency.dart';
-import 'package:StayFloripa/common/date.dart';
-import 'package:StayFloripa/models/house_model.dart';
+import 'package:stay_floripa/common/currency.dart';
+import 'package:stay_floripa/common/date.dart';
+import 'package:stay_floripa/models/house_model.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class SendRentMessageModel {
@@ -49,8 +48,6 @@ class RentService {
       throw 'Não foi possível abrir o link $url';
     }
   }
-
-  
 
   void sendWhatsApp(SendRentMessageModel props) async {
     _buildMessage(props);

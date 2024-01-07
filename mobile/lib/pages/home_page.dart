@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:StayFloripa/components/main_house_component.dart';
-import 'package:StayFloripa/models/house_model.dart';
+import 'package:stay_floripa/components/main_house_component.dart';
+import 'package:stay_floripa/models/house_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<HouseDetailsModel> houses = [];
-  HouseDetailsModel? mainHouse = null;
+  HouseDetailsModel? mainHouse;
   bool shouldRenderMainHouse = true;
 
   getHouses() async {
@@ -47,25 +47,25 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
 
-    Widget buildSearchBar() {
-      return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: TextFormField(
-          initialValue: '',
-          decoration: const InputDecoration(
-            labelText: 'Busque por uma casa',
-            border: InputBorder.none,
-            suffixIcon: Icon(
-              Icons.search,
-            ),
-          ),
-        ),
-      );
-    }
+    // Widget buildSearchBar() {
+    //   return Container(
+    //     padding: const EdgeInsets.symmetric(horizontal: 20),
+    //     decoration: BoxDecoration(
+    //       color: Colors.grey.withOpacity(0.1),
+    //       borderRadius: BorderRadius.circular(10),
+    //     ),
+    //     child: TextFormField(
+    //       initialValue: '',
+    //       decoration: const InputDecoration(
+    //         labelText: 'Busque por uma casa',
+    //         border: InputBorder.none,
+    //         suffixIcon: Icon(
+    //           Icons.search,
+    //         ),
+    //       ),
+    //     ),
+    //   );
+    // }
 
     Widget buildSuggestionsSection() {
       return Column(
@@ -79,10 +79,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SizedBox(height: deviceHeight * 0.01),
-          if (shouldRenderMainHouse && mainHouse != null)
-            MainHouseComponent(
-              house: mainHouse!,
-            ),
+          MainHouseComponent(
+            house: mainHouse!,
+          ),
         ],
       );
     }
@@ -93,10 +92,6 @@ class _HomePageState extends State<HomePage> {
           "StayFloripa.",
           style: GoogleFonts.merriweather(),
         ),
-        leading: IconButton(
-          icon: Icon(Icons.menu_rounded),
-          onPressed: () {},
-        ),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -104,13 +99,19 @@ class _HomePageState extends State<HomePage> {
           physics: const AlwaysScrollableScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // buildSearchBar(),
-                // SizedBox(height: deviceHeight * 0.03),
-                buildSuggestionsSection()
-              ],
+            child: Container(
+              constraints: BoxConstraints(
+                minHeight: deviceHeight * 0.7,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // buildSearchBar(),
+                  // SizedBox(height: deviceHeight * 0.03),
+                  if (shouldRenderMainHouse && mainHouse != null)
+                    buildSuggestionsSection()
+                ],
+              ),
             ),
           ),
         ),

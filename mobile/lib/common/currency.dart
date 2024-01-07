@@ -1,4 +1,4 @@
-import 'package:StayFloripa/models/house_model.dart';
+import 'package:stay_floripa/models/house_model.dart';
 import 'package:intl/intl.dart';
 
 String getHousePriceFormatted(HouseDetailsModel house) {

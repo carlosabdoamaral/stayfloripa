@@ -1,9 +1,9 @@
-import 'package:StayFloripa/common/currency.dart';
-import 'package:StayFloripa/models/house_model.dart';
+import 'package:stay_floripa/common/currency.dart';
+import 'package:stay_floripa/models/house_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget PriceOverlayComponent(HouseDetailsModel house) {
+Widget priceOverlayComponent(HouseDetailsModel house) {
   return Container(
     margin: const EdgeInsets.only(left: 10, top: 10),
     padding: const EdgeInsets.symmetric(

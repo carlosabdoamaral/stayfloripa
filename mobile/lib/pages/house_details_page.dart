@@ -1,8 +1,6 @@
-import 'package:StayFloripa/components/key_value_component.dart';
-import 'package:StayFloripa/components/price_overlay_component.dart';
-import 'package:StayFloripa/models/house_model.dart';
-import 'package:StayFloripa/pages/rent_house_page.dart';
-import 'package:StayFloripa/services/rent.service.dart';
+import 'package:stay_floripa/components/price_overlay_component.dart';
+import 'package:stay_floripa/models/house_model.dart';
+import 'package:stay_floripa/pages/rent_house_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -20,7 +18,6 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
   @override
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
-    double deviceWidth = MediaQuery.of(context).size.width;
 
     String getPhoneFormatted() {
       String phone = widget.house.contact!.phone!;
@@ -192,7 +189,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
               },
             ).toList(),
           ),
-          PriceOverlayComponent(widget.house),
+          priceOverlayComponent(widget.house),
         ],
       );
     }
@@ -243,10 +240,6 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
           ),
         ],
       );
-    }
-
-    Widget buildCheckInOutSection() {
-      return Text("Teste");
     }
 
     Widget buildRulesSection() {

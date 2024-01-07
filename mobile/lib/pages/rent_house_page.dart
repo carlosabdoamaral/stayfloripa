@@ -1,9 +1,7 @@
-import 'dart:ffi';
-
-import 'package:StayFloripa/common/date.dart';
-import 'package:StayFloripa/components/key_value_component.dart';
-import 'package:StayFloripa/models/house_model.dart';
-import 'package:StayFloripa/services/rent.service.dart';
+import 'package:stay_floripa/common/date.dart';
+import 'package:stay_floripa/components/key_value_component.dart';
+import 'package:stay_floripa/models/house_model.dart';
+import 'package:stay_floripa/services/rent.service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -33,7 +31,6 @@ class _RentHousePageState extends State<RentHousePage> {
   @override
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
-    double deviceWidth = MediaQuery.of(context).size.width;
 
     String getAmountFormatted(double amount) {
       var formatter = NumberFormat.currency(locale: 'pt_BR', symbol: '\$');

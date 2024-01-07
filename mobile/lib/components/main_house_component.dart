@@ -1,7 +1,7 @@
-import 'package:StayFloripa/components/price_overlay_component.dart';
-import 'package:StayFloripa/models/house_model.dart';
-import 'package:StayFloripa/pages/house_details_page.dart';
-import 'package:StayFloripa/pages/rent_house_page.dart';
+import 'package:stay_floripa/components/price_overlay_component.dart';
+import 'package:stay_floripa/models/house_model.dart';
+import 'package:stay_floripa/pages/house_details_page.dart';
+import 'package:stay_floripa/pages/rent_house_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,9 +17,6 @@ class MainHouseComponent extends StatefulWidget {
 class _MainHouseComponentState extends State<MainHouseComponent> {
   @override
   Widget build(BuildContext context) {
-
- 
-
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -36,7 +33,7 @@ class _MainHouseComponentState extends State<MainHouseComponent> {
                   fit: BoxFit.cover,
                 ),
               ),
-              PriceOverlayComponent(widget.house),
+              priceOverlayComponent(widget.house),
             ],
           ),
           const SizedBox(height: 10),
@@ -79,7 +76,7 @@ class _MainHouseComponentState extends State<MainHouseComponent> {
                     "Ver detalhes",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
-                      color: Color.fromARGB(255, 9, 12, 90),
+                      color: const Color.fromARGB(255, 9, 12, 90),
                     ),
                   ),
                 ),
@@ -99,7 +96,7 @@ class _MainHouseComponentState extends State<MainHouseComponent> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 9, 12, 90),
+                    color: const Color.fromARGB(255, 9, 12, 90),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
