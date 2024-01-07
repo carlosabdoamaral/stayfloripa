@@ -17,7 +17,6 @@ class HouseDetailsPage extends StatefulWidget {
 }
 
 class _HouseDetailsPageState extends State<HouseDetailsPage> {
-
   @override
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
@@ -246,6 +245,10 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
       );
     }
 
+    Widget buildCheckInOutSection() {
+      return Text("Teste");
+    }
+
     Widget buildRulesSection() {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -274,7 +277,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                 color: Colors.red,
               ),
             ),
-            widget.house.rules!.during!.list!,
+            widget.house.rules!.during!.forbidden!,
           ),
           SizedBox(height: deviceHeight * 0.03),
           buildRulesList(

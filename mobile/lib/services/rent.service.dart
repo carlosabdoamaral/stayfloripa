@@ -50,6 +50,8 @@ class RentService {
     }
   }
 
+  
+
   void sendWhatsApp(SendRentMessageModel props) async {
     _buildMessage(props);
     await _launchURL(

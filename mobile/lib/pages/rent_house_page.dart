@@ -26,6 +26,8 @@ class _RentHousePageState extends State<RentHousePage> {
   TextEditingController notes = TextEditingController();
   TextEditingController name = TextEditingController();
 
+  bool canRunConstructor = true;
+
   final rentService = RentService();
 
   @override
@@ -41,6 +43,11 @@ class _RentHousePageState extends State<RentHousePage> {
 
     void resolveFinalAmount() {
       int days = selectedDateRange.duration.inDays;
+
+      if (days == 0) {
+        days = 1;
+      }
+
       double res = days * widget.house.price!;
 
       setState(() {
@@ -91,7 +98,9 @@ class _RentHousePageState extends State<RentHousePage> {
             children: [
               KeyValueComponent(
                 label: "Valor final",
-                value: getAmountFormatted(finalAmount),
+                value: finalAmount == 0
+                    ? "Informe o check-in e check-out"
+                    : getAmountFormatted(finalAmount),
               ),
             ],
           ),
@@ -216,6 +225,32 @@ class _RentHousePageState extends State<RentHousePage> {
           Expanded(
             child: GestureDetector(
               onTap: () {
+                String errorLabel = "";
+
+                try {
+                  int.parse(guestCount.text);
+                } catch (e) {
+                  errorLabel = "Número de hóspedes inválido";
+                }
+
+                if (name.text.isEmpty) {
+                  errorLabel = "Seu nome deve estar preenchido";
+                }
+
+                if (errorLabel.isNotEmpty) {
+                  final snackBar = SnackBar(
+                    behavior: SnackBarBehavior.floating,
+                    content: Text(errorLabel),
+                    action: SnackBarAction(
+                      label: 'Ok',
+                      onPressed: () {},
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                  return;
+                }
+
                 SendRentMessageModel model = SendRentMessageModel(
                   house: widget.house,
                   dateRange: selectedDateRange,
@@ -246,6 +281,13 @@ class _RentHousePageState extends State<RentHousePage> {
           ),
         ],
       );
+    }
+
+    if (canRunConstructor) {
+      resolveFinalAmount();
+      setState(() {
+        canRunConstructor = false;
+      });
     }
 
     return Scaffold(
