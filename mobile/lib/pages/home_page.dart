@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<HouseDetailsModel> houses = [];
-  HouseDetailsModel selectedHouse = HouseDetailsModel();
+  HouseDetailsModel? mainHouse = null;
   bool shouldRenderMainHouse = true;
 
   getHouses() async {
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
 
     setState(() {
       houses = housesFormatted;
-      selectedHouse = housesFormatted[0];
+      mainHouse = housesFormatted[0];
     });
   }
 
@@ -46,7 +46,46 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
-    double deviceWith = MediaQuery.of(context).size.width;
+
+    Widget buildSearchBar() {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: TextFormField(
+          initialValue: '',
+          decoration: const InputDecoration(
+            labelText: 'Busque por uma casa',
+            border: InputBorder.none,
+            suffixIcon: Icon(
+              Icons.search,
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget buildSuggestionsSection() {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Recomendadas",
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          SizedBox(height: deviceHeight * 0.01),
+          if (shouldRenderMainHouse && mainHouse != null)
+            MainHouseComponent(
+              house: mainHouse!,
+            ),
+        ],
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -68,34 +107,9 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextFormField(
-                    initialValue: '',
-                    decoration: const InputDecoration(
-                      labelText: 'Busque por uma casa',
-                      border: InputBorder.none,
-                      suffixIcon: Icon(
-                        Icons.search,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: deviceHeight * 0.03),
-                Text(
-                  "Recomendadas",
-                  style: GoogleFonts.poppins(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                SizedBox(height: deviceHeight * 0.01),
-                if (shouldRenderMainHouse) MainHouseComponent(house: houses[0]),
-                SizedBox(height: deviceHeight * 0.06),
+                // buildSearchBar(),
+                // SizedBox(height: deviceHeight * 0.03),
+                buildSuggestionsSection()
               ],
             ),
           ),
