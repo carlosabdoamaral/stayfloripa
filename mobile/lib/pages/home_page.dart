@@ -54,6 +54,10 @@ class _HomePageState extends State<HomePage> {
           "StayFloripa.",
           style: GoogleFonts.merriweather(),
         ),
+        leading: IconButton(
+          icon: Icon(Icons.menu_rounded),
+          onPressed: () {},
+        ),
         centerTitle: true,
       ),
       body: SafeArea(

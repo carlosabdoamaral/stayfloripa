@@ -1,8 +1,10 @@
 import 'package:StayFloripa/components/key_value_component.dart';
+import 'package:StayFloripa/components/price_overlay_component.dart';
 import 'package:StayFloripa/models/house_model.dart';
+import 'package:StayFloripa/pages/rent_house_page.dart';
+import 'package:StayFloripa/services/rent.service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class HouseDetailsPage extends StatefulWidget {
@@ -15,6 +17,7 @@ class HouseDetailsPage extends StatefulWidget {
 }
 
 class _HouseDetailsPageState extends State<HouseDetailsPage> {
+
   @override
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
@@ -30,13 +33,6 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
       return "+$country $ddd $first-$second";
     }
 
-    String getAmountFormatted() {
-      double amount = widget.house.price!;
-      var formatter = NumberFormat.currency(locale: 'pt_BR', symbol: '\$');
-      String result = formatter.format(amount);
-      return result;
-    }
-
     Widget buildSection(String title, dynamic description) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,11 +42,12 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
             style: GoogleFonts.poppins(
               fontSize: 15,
               fontWeight: FontWeight.w600,
-              color: Color.fromARGB(255, 17, 21, 91),
+              color: const Color.fromARGB(255, 17, 21, 91),
             ),
           ),
           Text(
             description,
+            textAlign: TextAlign.justify,
             style: GoogleFonts.poppins(
               fontSize: 12,
               fontWeight: FontWeight.w400,
@@ -196,24 +193,94 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
               },
             ).toList(),
           ),
-          Container(
-            margin: const EdgeInsets.only(left: 10, top: 10),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-              vertical: 5,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.black45,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Text(
-              getAmountFormatted(),
+          PriceOverlayComponent(widget.house),
+        ],
+      );
+    }
+
+    Widget buildRulesList(
+      String? label,
+      Widget? customLabel,
+      List<String> rules,
+    ) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (label != null)
+            Text(
+              label,
               style: GoogleFonts.poppins(
-                fontSize: 15,
+                fontSize: 13,
                 fontWeight: FontWeight.w600,
-                color: Colors.white,
+                color: Colors.black54,
               ),
             ),
+          if (customLabel != null) customLabel,
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.grey.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: const EdgeInsets.symmetric(
+              vertical: 10,
+              horizontal: 20,
+            ),
+            margin: const EdgeInsets.symmetric(
+              vertical: 5,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                for (var rule in rules)
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 5,
+                    ),
+                    child: Text(rule),
+                  ),
+              ],
+            ),
+          ),
+        ],
+      );
+    }
+
+    Widget buildRulesSection() {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Regras",
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: const Color.fromARGB(255, 17, 21, 91),
+            ),
+          ),
+          buildRulesList(
+            "Durante a estadia",
+            null,
+            widget.house.rules!.during!.list!,
+          ),
+          SizedBox(height: deviceHeight * 0.03),
+          buildRulesList(
+            null,
+            Text(
+              "É importante lembrar",
+              style: GoogleFonts.poppins(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: Colors.red,
+              ),
+            ),
+            widget.house.rules!.during!.list!,
+          ),
+          SizedBox(height: deviceHeight * 0.03),
+          buildRulesList(
+            "Antes de sair",
+            null,
+            widget.house.rules!.beforeLeaving!.list!,
           ),
         ],
       );
@@ -266,36 +333,49 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                     // Acesso
                     buildSection("Acesso", widget.house.about!.access!),
                     SizedBox(height: deviceHeight * 0.03),
+
+                    buildRulesSection()
                   ],
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: SizedBox(
-                height: deviceHeight * 0.8,
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 15,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 7, 15, 82),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        "Solicitar reserva!",
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => RentHousePage(
+                        house: widget.house,
                       ),
                     ),
-                  ],
+                  );
+                },
+                child: SizedBox(
+                  height: deviceHeight * 0.8,
+                  child: Column(
+                    children: [
+                      const Spacer(),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 15,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 7, 15, 82),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          "Solicitar reserva!",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -52,7 +52,7 @@ export class RentService {
     O valor final calculado é ${amount}.\n
     Além disso gostaria de deixar essas observações: ${props.notes}`;
 
-    console.log("Here");
+
     if (type === RentContactTypes.EMAIL) {
       window.location.href = `mailto:${props.house?.responsible.email}?subject=Aluguel de imóvel&body=${message}`;
       return;
