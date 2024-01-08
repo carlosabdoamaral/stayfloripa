@@ -109,7 +109,20 @@ class _HomePageState extends State<HomePage> {
                   // buildSearchBar(),
                   // SizedBox(height: deviceHeight * 0.03),
                   if (shouldRenderMainHouse && mainHouse != null)
-                    buildSuggestionsSection()
+                    buildSuggestionsSection(),
+
+                  for (var house in houses)
+                    if (house.id != mainHouse?.id)
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: deviceHeight * 0.05,
+                          ),
+                          MainHouseComponent(
+                            house: house,
+                          ),
+                        ],
+                      )
                 ],
               ),
             ),

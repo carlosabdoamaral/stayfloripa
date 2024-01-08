@@ -18,3 +18,5 @@ samples, guidance on stayfloripa development, and a full API reference.
 
 JSON TO DART
 https://javiercbk.github.io/json_to_dart/
+
+keytool -genkey -v -keystore /Users/carlosabdoamaral/Documents/stayfloripa/keystore/upload.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload

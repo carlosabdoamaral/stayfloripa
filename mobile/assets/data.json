@@ -69,5 +69,132 @@
     "cancellationPolicy": {
       "list": ["Teste"]
     }
+  },
+  {
+    "id": 2,
+    "title": "Casa agradável com AR a 70mts da praia. 500MB e TV",
+    "description": "Relaxe com toda a família nesta acomodação tranquila. Um lugar aconchegante, próximo à praia. Uma casa residencial equipada com tudo o que você precisa para descansar e desfrutar de uma excelente estadia. Possui TV 4K a cabo com 250 canais, WI-FI 500 Mega. Uma área externa, coberta e bem arejada, com churrasqueira, fogareiro e rede de descanso.Garagem privativa com portão eletrônico, sistema de segurança, alarme e CFTV nas áreas externas.Acessórios para praia, jogos, dominó e baralho.",
+    "price": 812.0,
+    "maxGuests": 8,
+
+    "contact": {
+      "name": "Diego Vieira Bernardo",
+      "email": "diegovieirab@hotmail.com",
+      "phone": "5548991198980",
+      "obs": ""
+    },
+
+    "about": {
+      "space": "Casa planejada para você curtir tranquilamente em família! Casa fica num condômino composto por 3 casas, entrada do portão é para uso comum, mas todas as fotos do anúncio são de uso TOTALMENTE EXCLUSIVO desta casa.Churrasqueira, mesa de sinuca, banheiro externo, ducha externa, pátio da frente, área de descanso, uso exclusivo da casa da frente, ou seja, deste anuncio.",
+      "access": "Os hóspedes podem circular pelo bairro a pé e disponibilizamos estacionamento dentro do próprio terreno. A casa fica a 2 minutos da linda praia do Pântano do Sul.",
+      "notes": "Limite de 8 hóspedes. Não efetuamos a troca de roupa cama e banho. Para mais hóspedes fazer uma pré-consulta, pois depende da idade até aceitamos, porem muda o valor um pouco"
+    },
+
+    "count": {
+      "bedrooms": 3,
+      "beds": 6,
+      "bathrooms": 2
+    },
+
+    "location": {
+      "address": "R. Joaquim Neves, 152 - Pântano do Sul, Florianópolis - SC",
+      "neighborhood": "Pântano do Sul",
+      "city": "Florianópolis",
+      "state": "SC",
+      "country": "BR",
+      "zip": "88067-120"
+    },
+
+    "checkInOut": {
+      "checkIn": "Check-in após as 15:00h",
+      "checkOut": "Checkout antes das 11:00h"
+    },
+
+    "rules": {
+      "during": {
+        "list": [
+          "Máximo de 8 hóspedes",
+          "Permitido animais de estimação",
+          "Horário de silêncio: 23:00 - 07:00",
+          "Não são permitidas festas ou eventos",
+          "Fotografia comercial permitida",
+          "Proibido fumar",
+          "Não é permitido hospedar mais do que 8 pessoas.",
+          "Divisão do Lixo orgânico e reciclado (temos recipientes para tal divisão).",
+          "Deixar as louças e utensílios domésticos limpos na saída. ",
+          "Se quebrar algum utensílio, nos comuniquem por favor! ",
+          "Como em qualquer comunidade, é essencial o bom senso."
+        ],
+        "forbidden": []
+      },
+      "beforeLeaving": {
+        "list": [
+          "Recolha as toalhas usadas",
+          "Tire o lixo",
+          "Desligue tudo",
+          "Devolva as chaves",
+          "Tranque tudo",
+          "Deixar a casa como entrou, com os lixos recolhidos, louça limpa, toalhas sujas no banheiro, ligar o alarme e guardar a chave no cadeado! Esperemos recebe-los novamente"
+        ]
+      }
+    },
+
+    "cancellationPolicy": {
+      "list": [""]
+    }
+  },
+  {
+    "id": 99,
+    "title": "",
+    "description": "",
+    "price": 0.0,
+    "maxGuests": 0,
+
+    "contact": {
+      "name": "",
+      "email": "",
+      "phone": "",
+      "obs": ""
+    },
+
+    "about": {
+      "space": "",
+      "access": "",
+      "notes": ""
+    },
+
+    "count": {
+      "bedrooms": 0,
+      "beds": 0,
+      "bathrooms": 0
+    },
+
+    "location": {
+      "address": "",
+      "neighborhood": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "zip": ""
+    },
+
+    "checkInOut": {
+      "checkIn": "",
+      "checkOut": ""
+    },
+
+    "rules": {
+      "during": {
+        "list": [""],
+        "forbidden": [""]
+      },
+      "beforeLeaving": {
+        "list": [""]
+      }
+    },
+
+    "cancellationPolicy": {
+      "list": [""]
+    }
   }
 ]

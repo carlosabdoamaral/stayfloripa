@@ -66,3 +66,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+keystore/encryption_public_key.pem
+keystore/pepk.jar
+keystore/upload.jks

@@ -26,11 +26,17 @@ class _MainHouseComponentState extends State<MainHouseComponent> {
         children: [
           Stack(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  'assets/images/1.png',
-                  fit: BoxFit.cover,
+              SizedBox(
+                width: double.infinity,
+                child: AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      'assets/images/${widget.house.id}/${widget.house.id}.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
               priceOverlayComponent(widget.house),

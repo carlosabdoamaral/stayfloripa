@@ -1,6 +1,5 @@
 name: stay_floripa
 description: "Casas familiares em Florianopolis."
-publish_to: "none"
 
 version: 1.0.0+1
 
@@ -35,3 +34,5 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/1/
+    - assets/images/2/

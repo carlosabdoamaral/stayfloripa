@@ -122,9 +122,30 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
     Widget buildAddressSection() {
       return Row(
         children: [
-          buildSection(
-            "Endereço",
-            widget.house.location!.address!,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Endereço",
+                style: GoogleFonts.poppins(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: const Color.fromARGB(255, 17, 21, 91),
+                ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.6,
+                child: Text(
+                  widget.house.location!.address!,
+                  textAlign: TextAlign.justify,
+                  style: GoogleFonts.poppins(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ),
+            ],
           ),
           const Spacer(),
           Container(
@@ -177,7 +198,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
-                          'assets/images/1.png',
+                          'assets/images/${widget.house.id}.png',
                           fit: BoxFit.cover,
                           height: deviceHeight * 0.2,
                           width: double.infinity,
@@ -254,30 +275,49 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
               color: const Color.fromARGB(255, 17, 21, 91),
             ),
           ),
-          buildRulesList(
-            "Durante a estadia",
-            null,
-            widget.house.rules!.during!.list!,
-          ),
-          SizedBox(height: deviceHeight * 0.03),
-          buildRulesList(
-            null,
-            Text(
-              "É importante lembrar",
-              style: GoogleFonts.poppins(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-                color: Colors.red,
-              ),
+          if (widget.house.rules!.during!.list!.isNotEmpty)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildRulesList(
+                  "Durante a estadia",
+                  null,
+                  widget.house.rules!.during!.list!,
+                ),
+                SizedBox(height: deviceHeight * 0.03),
+              ],
             ),
-            widget.house.rules!.during!.forbidden!,
-          ),
-          SizedBox(height: deviceHeight * 0.03),
-          buildRulesList(
-            "Antes de sair",
-            null,
-            widget.house.rules!.beforeLeaving!.list!,
-          ),
+          if (widget.house.rules!.during!.forbidden!.isNotEmpty)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildRulesList(
+                  null,
+                  Text(
+                    "É importante lembrar",
+                    style: GoogleFonts.poppins(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.red,
+                    ),
+                  ),
+                  widget.house.rules!.during!.forbidden!,
+                ),
+                SizedBox(height: deviceHeight * 0.03),
+              ],
+            ),
+          if (widget.house.rules!.beforeLeaving!.list!.isNotEmpty)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildRulesList(
+                  "Antes de sair",
+                  null,
+                  widget.house.rules!.beforeLeaving!.list!,
+                ),
+                SizedBox(height: deviceHeight * 0.03),
+              ],
+            ),
         ],
       );
     }
