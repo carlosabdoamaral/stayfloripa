@@ -296,11 +296,11 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
             SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               child: Padding(
-                padding: const EdgeInsets.only(
+                padding: EdgeInsets.only(
                   left: 20,
                   right: 20,
                   top: 20,
-                  bottom: 100,
+                  bottom: deviceHeight * 0.1,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -347,8 +347,11 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                     ),
                   );
                 },
-                child: SizedBox(
-                  height: deviceHeight * 0.8,
+                child: Container(
+                  height: deviceHeight * 0.9,
+                  margin: const EdgeInsets.only(
+                    bottom: 20,
+                  ),
                   child: Column(
                     children: [
                       const Spacer(),

@@ -185,11 +185,49 @@ class _RentHousePageState extends State<RentHousePage> {
     }
 
     Widget buildContactButtonsSection() {
+      bool formIsValid() {
+        String errorLabel = "";
+
+        try {
+          int.parse(guestCount.text);
+
+          if (int.parse(guestCount.text) <= 0) {
+            errorLabel = "Número de hóspedes inválido";
+          }
+        } catch (e) {
+          errorLabel = "Número de hóspedes inválido";
+        }
+
+        if (name.text.isEmpty) {
+          errorLabel = "Seu nome deve estar preenchido";
+        }
+
+        if (errorLabel.isNotEmpty) {
+          final snackBar = SnackBar(
+            behavior: SnackBarBehavior.floating,
+            content: Text(errorLabel),
+            action: SnackBarAction(
+              label: 'Ok',
+              onPressed: () {},
+            ),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+          return false;
+        }
+
+        return true;
+      }
+
       return Row(
         children: [
           Expanded(
             child: GestureDetector(
               onTap: () {
+                if (!formIsValid()) {
+                  return;
+                }
+
                 SendRentMessageModel model = SendRentMessageModel(
                   house: widget.house,
                   dateRange: selectedDateRange,
@@ -222,29 +260,7 @@ class _RentHousePageState extends State<RentHousePage> {
           Expanded(
             child: GestureDetector(
               onTap: () {
-                String errorLabel = "";
-
-                try {
-                  int.parse(guestCount.text);
-                } catch (e) {
-                  errorLabel = "Número de hóspedes inválido";
-                }
-
-                if (name.text.isEmpty) {
-                  errorLabel = "Seu nome deve estar preenchido";
-                }
-
-                if (errorLabel.isNotEmpty) {
-                  final snackBar = SnackBar(
-                    behavior: SnackBarBehavior.floating,
-                    content: Text(errorLabel),
-                    action: SnackBarAction(
-                      label: 'Ok',
-                      onPressed: () {},
-                    ),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
+                if (!formIsValid()) {
                   return;
                 }
 
