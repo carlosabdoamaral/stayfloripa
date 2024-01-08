@@ -162,6 +162,7 @@ class Location {
   String? state;
   String? country;
   String? zip;
+  String? mapsURL;
 
   Location(
       {this.address,
@@ -169,7 +170,8 @@ class Location {
       this.city,
       this.state,
       this.country,
-      this.zip});
+      this.zip,
+      this.mapsURL});
 
   Location.fromJson(Map<String, dynamic> json) {
     address = json['address'];
@@ -178,6 +180,7 @@ class Location {
     state = json['state'];
     country = json['country'];
     zip = json['zip'];
+    mapsURL = json['mapsURL'];
   }
 
   Map<String, dynamic> toJson() {
@@ -188,6 +191,7 @@ class Location {
     data['state'] = this.state;
     data['country'] = this.country;
     data['zip'] = this.zip;
+    data['mapsURL'] = this.mapsURL;
     return data;
   }
 }

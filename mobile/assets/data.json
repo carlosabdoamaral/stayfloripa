@@ -107,7 +107,8 @@
       "city": "Florianópolis",
       "state": "SC",
       "country": "BR",
-      "zip": "88052-400"
+      "zip": "88052-400",
+      "mapsURL": "https://maps.app.goo.gl/eweTbxs9tPCjZabt8"
     },
 
     "checkInOut": {
@@ -224,7 +225,8 @@
       "city": "Florianópolis",
       "state": "SC",
       "country": "BR",
-      "zip": "88067-120"
+      "zip": "88067-120",
+      "mapsURL": "https://maps.app.goo.gl/Uk1XrLNBJ4Xz9xvS7"
     },
 
     "checkInOut": {

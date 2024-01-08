@@ -15,8 +15,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<HouseDetailsModel> houses = [];
+  List<HouseDetailsModel> housesShowing = [];
   HouseDetailsModel? mainHouse;
   bool shouldRenderMainHouse = true;
+
+  TextEditingController searchTextController = TextEditingController();
 
   getHouses() async {
     final String response = await rootBundle.loadString('assets/data.json');
@@ -29,12 +32,13 @@ class _HomePageState extends State<HomePage> {
 
     setState(() {
       houses = housesFormatted;
+      housesShowing = housesFormatted;
       mainHouse = housesFormatted[0];
     });
   }
 
-  AssetImage getHouseImage(dynamic h) {
-    return AssetImage('assets/images/${h['id']}.png');
+  Image getHouseImage(HouseDetailsModel house) {
+    return Image.asset(house.images![0]);
   }
 
   @override
@@ -47,42 +51,33 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
 
-    // Widget buildSearchBar() {
-    //   return Container(
-    //     padding: const EdgeInsets.symmetric(horizontal: 20),
-    //     decoration: BoxDecoration(
-    //       color: Colors.grey.withOpacity(0.1),
-    //       borderRadius: BorderRadius.circular(10),
-    //     ),
-    //     child: TextFormField(
-    //       initialValue: '',
-    //       decoration: const InputDecoration(
-    //         labelText: 'Busque por uma casa',
-    //         border: InputBorder.none,
-    //         suffixIcon: Icon(
-    //           Icons.search,
-    //         ),
-    //       ),
-    //     ),
-    //   );
-    // }
-
-    Widget buildSuggestionsSection() {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Recomendadas",
-            style: GoogleFonts.poppins(
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
+    Widget buildSearchBar() {
+      return TapRegion(
+        onTapOutside: (event) => {FocusScope.of(context).unfocus()},
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          decoration: BoxDecoration(
+            color: Colors.grey.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: TextFormField(
+            controller: searchTextController,
+            onChanged: (value) {
+              setState(() {
+                housesShowing = houses
+                    .where((element) => element.title!.contains(value))
+                    .toList();
+              });
+            },
+            decoration: const InputDecoration(
+              labelText: 'Busque por uma casa',
+              border: InputBorder.none,
+              suffixIcon: Icon(
+                Icons.search,
+              ),
             ),
           ),
-          SizedBox(height: deviceHeight * 0.01),
-          MainHouseComponent(
-            house: mainHouse!,
-          ),
-        ],
+        ),
       );
     }
 
@@ -106,23 +101,12 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // buildSearchBar(),
-                  // SizedBox(height: deviceHeight * 0.03),
-                  if (shouldRenderMainHouse && mainHouse != null)
-                    buildSuggestionsSection(),
-
-                  for (var house in houses)
-                    if (house.id != mainHouse?.id)
-                      Column(
-                        children: [
-                          SizedBox(
-                            height: deviceHeight * 0.05,
-                          ),
-                          MainHouseComponent(
-                            house: house,
-                          ),
-                        ],
-                      )
+                  buildSearchBar(),
+                  SizedBox(height: deviceHeight * 0.03),
+                  for (var house in housesShowing)
+                    MainHouseComponent(
+                      house: house,
+                    ),
                 ],
               ),
             ),

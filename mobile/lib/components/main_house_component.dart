@@ -18,6 +18,9 @@ class _MainHouseComponentState extends State<MainHouseComponent> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(
+        bottom: MediaQuery.of(context).size.height * 0.04,
+      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
       ),

@@ -1,3 +1,4 @@
+import 'package:stay_floripa/common/http.dart';
 import 'package:stay_floripa/common/phone.dart';
 import 'package:stay_floripa/components/price_overlay_component.dart';
 import 'package:stay_floripa/modals/contact_modal.dart';
@@ -149,15 +150,20 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
             ],
           ),
           const Spacer(),
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              color: const Color.fromARGB(255, 17, 21, 91).withOpacity(0.1),
-            ),
-            child: const Icon(
-              Icons.location_on,
-              color: Color.fromARGB(255, 17, 21, 91),
+          GestureDetector(
+            onTap: () {
+              launchAnyURL(widget.house.location!.mapsURL!);
+            },
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: const Color.fromARGB(255, 17, 21, 91).withOpacity(0.1),
+              ),
+              child: const Icon(
+                Icons.location_on,
+                color: Color.fromARGB(255, 17, 21, 91),
+              ),
             ),
           )
         ],

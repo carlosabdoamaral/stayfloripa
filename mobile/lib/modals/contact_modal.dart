@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:stay_floripa/common/contact.dart';
+import 'package:stay_floripa/common/http.dart';
 import 'package:stay_floripa/common/phone.dart';
 import 'package:stay_floripa/models/house_model.dart';
 
