@@ -188,18 +188,22 @@ class _RentHousePageState extends State<RentHousePage> {
       bool formIsValid() {
         String errorLabel = "";
 
+        if (name.text.isEmpty) {
+          errorLabel = "Seu nome deve estar preenchido";
+        }
+
         try {
           int.parse(guestCount.text);
 
           if (int.parse(guestCount.text) <= 0) {
             errorLabel = "Número de hóspedes inválido";
           }
+
+          if (int.parse(guestCount.text) > widget.house.maxGuests!) {
+            errorLabel = "Número de hóspedes maior que o máximo permitido";
+          }
         } catch (e) {
           errorLabel = "Número de hóspedes inválido";
-        }
-
-        if (name.text.isEmpty) {
-          errorLabel = "Seu nome deve estar preenchido";
         }
 
         if (errorLabel.isNotEmpty) {

@@ -1,4 +1,6 @@
+import 'package:stay_floripa/common/phone.dart';
 import 'package:stay_floripa/components/price_overlay_component.dart';
+import 'package:stay_floripa/modals/contact_modal.dart';
 import 'package:stay_floripa/models/house_model.dart';
 import 'package:stay_floripa/pages/rent_house_page.dart';
 import 'package:flutter/material.dart';
@@ -18,16 +20,6 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
   @override
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
-
-    String getPhoneFormatted() {
-      String phone = widget.house.contact!.phone!;
-      String country = phone.substring(0, 2);
-      String ddd = phone.substring(2, 4);
-
-      String first = phone.substring(5, 9);
-      String second = phone.substring(9);
-      return "+$country $ddd $first-$second";
-    }
 
     Widget buildSection(String title, dynamic description) {
       return Column(
@@ -55,44 +47,53 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
     }
 
     Widget buildContactSection() {
-      return Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 15,
-        ),
-        decoration: BoxDecoration(
-          // border: Border.all(color: Colors.grey[300]!, width: 1),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 1,
-              blurRadius: 5,
-              offset: const Offset(0, 3),
-            ),
-          ],
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.house.contact!.name!,
-              style: GoogleFonts.poppins(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
+      return GestureDetector(
+        onTap: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return ContactModal(house: widget.house);
+              });
+        },
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 15,
+          ),
+          decoration: BoxDecoration(
+            // border: Border.all(color: Colors.grey[300]!, width: 1),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: const Offset(0, 3),
               ),
-            ),
-            Text(
-              "${getPhoneFormatted()} · ${widget.house.contact!.email!}",
-              overflow: TextOverflow.ellipsis,
-              style: GoogleFonts.poppins(
-                color: Colors.grey[600],
-                fontSize: 13,
+            ],
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.house.contact!.name!,
+                style: GoogleFonts.poppins(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-          ],
+              Text(
+                "${getPhoneFormatted(widget.house.contact!.phone!)} · ${widget.house.contact!.email!}",
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.poppins(
+                  color: Colors.grey[600],
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          ),
         ),
       );
     }

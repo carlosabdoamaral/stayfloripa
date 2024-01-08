@@ -1,8 +1,6 @@
 import 'package:stay_floripa/components/price_overlay_component.dart';
 import 'package:stay_floripa/models/house_model.dart';
 import 'package:stay_floripa/pages/house_details_controller.dart';
-import 'package:stay_floripa/pages/house_details_gallery_page.dart';
-import 'package:stay_floripa/pages/house_details_page.dart';
 import 'package:stay_floripa/pages/rent_house_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
