@@ -322,105 +322,94 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Detalhes",
-          style: GoogleFonts.merriweather(),
-        ),
-        centerTitle: true,
-      ),
-      body: SafeArea(
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                  top: 20,
-                  bottom: deviceHeight * 0.1,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    buildCarouselSection(),
-                    SizedBox(height: deviceHeight * 0.02),
-
-                    buildTitleSection(),
-                    SizedBox(height: deviceHeight * 0.02),
-
-                    buildContactSection(),
-                    SizedBox(height: deviceHeight * 0.03),
-
-                    // Endereço
-                    buildAddressSection(),
-                    SizedBox(height: deviceHeight * 0.03),
-
-                    // Descrição
-                    buildSection("Descrição", widget.house.description!),
-                    SizedBox(height: deviceHeight * 0.03),
-
-                    // O espaço
-                    buildSection("Espaço", widget.house.about!.space!),
-                    SizedBox(height: deviceHeight * 0.03),
-
-                    // Acesso
-                    buildSection("Acesso", widget.house.about!.access!),
-                    SizedBox(height: deviceHeight * 0.03),
-
-                    buildRulesSection()
-                  ],
-                ),
-              ),
+    return Stack(
+      children: [
+        SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: 20,
+              right: 20,
+              top: 20,
+              bottom: deviceHeight * 0.1,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => RentHousePage(
-                        house: widget.house,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildCarouselSection(),
+                SizedBox(height: deviceHeight * 0.02),
+
+                buildTitleSection(),
+                SizedBox(height: deviceHeight * 0.02),
+
+                buildContactSection(),
+                SizedBox(height: deviceHeight * 0.03),
+
+                // Endereço
+                buildAddressSection(),
+                SizedBox(height: deviceHeight * 0.03),
+
+                // Descrição
+                buildSection("Descrição", widget.house.description!),
+                SizedBox(height: deviceHeight * 0.03),
+
+                // O espaço
+                buildSection("Espaço", widget.house.about!.space!),
+                SizedBox(height: deviceHeight * 0.03),
+
+                // Acesso
+                buildSection("Acesso", widget.house.about!.access!),
+                SizedBox(height: deviceHeight * 0.03),
+
+                buildRulesSection()
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => RentHousePage(
+                    house: widget.house,
+                  ),
+                ),
+              );
+            },
+            child: Container(
+              height: deviceHeight * 0.9,
+              margin: const EdgeInsets.only(
+                bottom: 20,
+              ),
+              child: Column(
+                children: [
+                  const Spacer(),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 15,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 7, 15, 82),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      "Solicitar reserva!",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                  );
-                },
-                child: Container(
-                  height: deviceHeight * 0.9,
-                  margin: const EdgeInsets.only(
-                    bottom: 20,
                   ),
-                  child: Column(
-                    children: [
-                      const Spacer(),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 15,
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 7, 15, 82),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          "Solicitar reserva!",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
