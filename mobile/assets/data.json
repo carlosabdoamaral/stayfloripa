@@ -6,6 +6,82 @@
     "price": 1000.0,
     "maxGuests": 10,
 
+    "images": [
+      "assets/images/vargem_pequena/banner.png",
+      "assets/images/vargem_pequena/1.png",
+      "assets/images/vargem_pequena/2.png",
+      "assets/images/vargem_pequena/3.png",
+      "assets/images/vargem_pequena/4.png",
+      "assets/images/vargem_pequena/5.png",
+      "assets/images/vargem_pequena/6.png",
+      "assets/images/vargem_pequena/7.png",
+      "assets/images/vargem_pequena/8.png",
+      "assets/images/vargem_pequena/9.png",
+      "assets/images/vargem_pequena/10.png",
+      "assets/images/vargem_pequena/11.png",
+      "assets/images/vargem_pequena/12.png",
+      "assets/images/vargem_pequena/13.png",
+      "assets/images/vargem_pequena/14.png",
+      "assets/images/vargem_pequena/15.png",
+      "assets/images/vargem_pequena/16.png",
+      "assets/images/vargem_pequena/17.png",
+      "assets/images/vargem_pequena/18.png",
+      "assets/images/vargem_pequena/19.png",
+      "assets/images/vargem_pequena/20.png",
+      "assets/images/vargem_pequena/21.png",
+      "assets/images/vargem_pequena/22.png",
+      "assets/images/vargem_pequena/23.png",
+      "assets/images/vargem_pequena/24.png",
+      "assets/images/vargem_pequena/25.png",
+      "assets/images/vargem_pequena/26.png",
+      "assets/images/vargem_pequena/27.png",
+      "assets/images/vargem_pequena/28.png",
+      "assets/images/vargem_pequena/29.png",
+      "assets/images/vargem_pequena/30.png",
+      "assets/images/vargem_pequena/31.png",
+      "assets/images/vargem_pequena/32.png",
+      "assets/images/vargem_pequena/33.png",
+      "assets/images/vargem_pequena/34.png",
+      "assets/images/vargem_pequena/35.png",
+      "assets/images/vargem_pequena/36.png",
+      "assets/images/vargem_pequena/37.png",
+      "assets/images/vargem_pequena/38.png",
+      "assets/images/vargem_pequena/39.png",
+      "assets/images/vargem_pequena/40.png",
+      "assets/images/vargem_pequena/41.png",
+      "assets/images/vargem_pequena/42.png",
+      "assets/images/vargem_pequena/43.png",
+      "assets/images/vargem_pequena/44.png",
+      "assets/images/vargem_pequena/45.png",
+      "assets/images/vargem_pequena/46.png",
+      "assets/images/vargem_pequena/47.png",
+      "assets/images/vargem_pequena/48.png",
+      "assets/images/vargem_pequena/49.png",
+      "assets/images/vargem_pequena/50.png",
+      "assets/images/vargem_pequena/51.png",
+      "assets/images/vargem_pequena/52.png",
+      "assets/images/vargem_pequena/53.png",
+      "assets/images/vargem_pequena/54.png",
+      "assets/images/vargem_pequena/55.png",
+      "assets/images/vargem_pequena/56.png",
+      "assets/images/vargem_pequena/57.png",
+      "assets/images/vargem_pequena/58.png",
+      "assets/images/vargem_pequena/59.png",
+      "assets/images/vargem_pequena/60.png",
+      "assets/images/vargem_pequena/61.png",
+      "assets/images/vargem_pequena/62.png",
+      "assets/images/vargem_pequena/63.png",
+      "assets/images/vargem_pequena/64.png",
+      "assets/images/vargem_pequena/65.png",
+      "assets/images/vargem_pequena/66.png",
+      "assets/images/vargem_pequena/67.png",
+      "assets/images/vargem_pequena/68.png",
+      "assets/images/vargem_pequena/69.png",
+      "assets/images/vargem_pequena/70.png",
+      "assets/images/vargem_pequena/71.png",
+      "assets/images/vargem_pequena/72.png"
+    ],
+
     "contact": {
       "name": "Dayana dos Santos Bernardo",
       "email": "dayna.bernardo@stayfloripa.com",
@@ -74,8 +150,54 @@
     "id": 2,
     "title": "Casa agradável com AR a 70mts da praia. 500MB e TV",
     "description": "Relaxe com toda a família nesta acomodação tranquila. Um lugar aconchegante, próximo à praia. Uma casa residencial equipada com tudo o que você precisa para descansar e desfrutar de uma excelente estadia. Possui TV 4K a cabo com 250 canais, WI-FI 500 Mega. Uma área externa, coberta e bem arejada, com churrasqueira, fogareiro e rede de descanso.Garagem privativa com portão eletrônico, sistema de segurança, alarme e CFTV nas áreas externas.Acessórios para praia, jogos, dominó e baralho.",
-    "price": 812.0,
+    "price": 812.1,
     "maxGuests": 8,
+
+    "images": [
+      "assets/images/pantano_do_sul/banner.png",
+      "assets/images/pantano_do_sul/cozinha_1.png",
+      "assets/images/pantano_do_sul/cozinha_2.png",
+      "assets/images/pantano_do_sul/cozinha_3.png",
+      "assets/images/pantano_do_sul/cozinha_4.png",
+      "assets/images/pantano_do_sul/cozinha_5.png",
+      "assets/images/pantano_do_sul/cozinha_6.png",
+      "assets/images/pantano_do_sul/quarto_1_1.png",
+      "assets/images/pantano_do_sul/quarto_1_2.png",
+      "assets/images/pantano_do_sul/quarto_1_3.png",
+      "assets/images/pantano_do_sul/quarto_1_4.png",
+      "assets/images/pantano_do_sul/quarto_2_1.png",
+      "assets/images/pantano_do_sul/quarto_2_2.png",
+      "assets/images/pantano_do_sul/quarto_2_3.png",
+      "assets/images/pantano_do_sul/quarto_3_1.png",
+      "assets/images/pantano_do_sul/quarto_3_2.png",
+      "assets/images/pantano_do_sul/quarto_3_3.png",
+      "assets/images/pantano_do_sul/banheiro_1_1.png",
+      "assets/images/pantano_do_sul/banheiro_1_2.png",
+      "assets/images/pantano_do_sul/banheiro_2_1.png",
+      "assets/images/pantano_do_sul/quintal_1.png",
+      "assets/images/pantano_do_sul/quintal_2.png",
+      "assets/images/pantano_do_sul/quintal_3.png",
+      "assets/images/pantano_do_sul/quintal_4.png",
+      "assets/images/pantano_do_sul/patio_1.png",
+      "assets/images/pantano_do_sul/patio_2.png",
+      "assets/images/pantano_do_sul/patio_3.png",
+      "assets/images/pantano_do_sul/patio_4.png",
+      "assets/images/pantano_do_sul/patio_5.png",
+      "assets/images/pantano_do_sul/patio_6.png",
+      "assets/images/pantano_do_sul/patio_7.png",
+      "assets/images/pantano_do_sul/patio_8.png",
+      "assets/images/pantano_do_sul/patio_9.png",
+      "assets/images/pantano_do_sul/patio_10.png",
+      "assets/images/pantano_do_sul/patio_11.png",
+      "assets/images/pantano_do_sul/patio_12.png",
+      "assets/images/pantano_do_sul/garagem_1.png",
+      "assets/images/pantano_do_sul/garagem_2.png",
+      "assets/images/pantano_do_sul/exterior_1.png",
+      "assets/images/pantano_do_sul/adicionais_1.png",
+      "assets/images/pantano_do_sul/adicionais_2.png",
+      "assets/images/pantano_do_sul/adicionais_3.png",
+      "assets/images/pantano_do_sul/adicionais_4.png"
+    ],
 
     "contact": {
       "name": "Diego Vieira Bernardo",
@@ -136,60 +258,6 @@
           "Tranque tudo",
           "Deixar a casa como entrou, com os lixos recolhidos, louça limpa, toalhas sujas no banheiro, ligar o alarme e guardar a chave no cadeado! Esperemos recebe-los novamente"
         ]
-      }
-    },
-
-    "cancellationPolicy": {
-      "list": [""]
-    }
-  },
-  {
-    "id": 99,
-    "title": "",
-    "description": "",
-    "price": 0.0,
-    "maxGuests": 0,
-
-    "contact": {
-      "name": "",
-      "email": "",
-      "phone": "",
-      "obs": ""
-    },
-
-    "about": {
-      "space": "",
-      "access": "",
-      "notes": ""
-    },
-
-    "count": {
-      "bedrooms": 0,
-      "beds": 0,
-      "bathrooms": 0
-    },
-
-    "location": {
-      "address": "",
-      "neighborhood": "",
-      "city": "",
-      "state": "",
-      "country": "",
-      "zip": ""
-    },
-
-    "checkInOut": {
-      "checkIn": "",
-      "checkOut": ""
-    },
-
-    "rules": {
-      "during": {
-        "list": [""],
-        "forbidden": [""]
-      },
-      "beforeLeaving": {
-        "list": [""]
       }
     },
 

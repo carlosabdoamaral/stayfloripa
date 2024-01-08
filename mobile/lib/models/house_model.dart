@@ -4,6 +4,7 @@ class HouseDetailsModel {
   String? description;
   double? price;
   int? maxGuests;
+  List<String>? images;
   Contact? contact;
   About? about;
   Count? count;
@@ -18,6 +19,7 @@ class HouseDetailsModel {
       this.description,
       this.price,
       this.maxGuests,
+      this.images,
       this.contact,
       this.about,
       this.count,
@@ -32,48 +34,51 @@ class HouseDetailsModel {
     description = json['description'];
     price = json['price'];
     maxGuests = json['maxGuests'];
+    images = json['images'].cast<String>();
     contact =
-        json['contact'] != null ? Contact.fromJson(json['contact']) : null;
-    about = json['about'] != null ? About.fromJson(json['about']) : null;
-    count = json['count'] != null ? Count.fromJson(json['count']) : null;
-    location =
-        json['location'] != null ? Location.fromJson(json['location']) : null;
-    checkInOut = json['checkInOut'] != null
-        ? CheckInOut.fromJson(json['checkInOut'])
+        json['contact'] != null ? new Contact.fromJson(json['contact']) : null;
+    about = json['about'] != null ? new About.fromJson(json['about']) : null;
+    count = json['count'] != null ? new Count.fromJson(json['count']) : null;
+    location = json['location'] != null
+        ? new Location.fromJson(json['location'])
         : null;
-    rules = json['rules'] != null ? Rules.fromJson(json['rules']) : null;
+    checkInOut = json['checkInOut'] != null
+        ? new CheckInOut.fromJson(json['checkInOut'])
+        : null;
+    rules = json['rules'] != null ? new Rules.fromJson(json['rules']) : null;
     cancellationPolicy = json['cancellationPolicy'] != null
-        ? BeforeLeaving.fromJson(json['cancellationPolicy'])
+        ? new BeforeLeaving.fromJson(json['cancellationPolicy'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['title'] = title;
-    data['description'] = description;
-    data['price'] = price;
-    data['maxGuests'] = maxGuests;
-    if (contact != null) {
-      data['contact'] = contact!.toJson();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['description'] = this.description;
+    data['price'] = this.price;
+    data['maxGuests'] = this.maxGuests;
+    data['images'] = this.images;
+    if (this.contact != null) {
+      data['contact'] = this.contact!.toJson();
     }
-    if (about != null) {
-      data['about'] = about!.toJson();
+    if (this.about != null) {
+      data['about'] = this.about!.toJson();
     }
-    if (count != null) {
-      data['count'] = count!.toJson();
+    if (this.count != null) {
+      data['count'] = this.count!.toJson();
     }
-    if (location != null) {
-      data['location'] = location!.toJson();
+    if (this.location != null) {
+      data['location'] = this.location!.toJson();
     }
-    if (checkInOut != null) {
-      data['checkInOut'] = checkInOut!.toJson();
+    if (this.checkInOut != null) {
+      data['checkInOut'] = this.checkInOut!.toJson();
     }
-    if (rules != null) {
-      data['rules'] = rules!.toJson();
+    if (this.rules != null) {
+      data['rules'] = this.rules!.toJson();
     }
-    if (cancellationPolicy != null) {
-      data['cancellationPolicy'] = cancellationPolicy!.toJson();
+    if (this.cancellationPolicy != null) {
+      data['cancellationPolicy'] = this.cancellationPolicy!.toJson();
     }
     return data;
   }
@@ -95,11 +100,11 @@ class Contact {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['email'] = email;
-    data['phone'] = phone;
-    data['obs'] = obs;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['email'] = this.email;
+    data['phone'] = this.phone;
+    data['obs'] = this.obs;
     return data;
   }
 }
@@ -118,10 +123,10 @@ class About {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['space'] = space;
-    data['access'] = access;
-    data['notes'] = notes;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['space'] = this.space;
+    data['access'] = this.access;
+    data['notes'] = this.notes;
     return data;
   }
 }
@@ -140,10 +145,10 @@ class Count {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['bedrooms'] = bedrooms;
-    data['beds'] = beds;
-    data['bathrooms'] = bathrooms;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['bedrooms'] = this.bedrooms;
+    data['beds'] = this.beds;
+    data['bathrooms'] = this.bathrooms;
     return data;
   }
 }
@@ -174,13 +179,13 @@ class Location {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['address'] = address;
-    data['neighborhood'] = neighborhood;
-    data['city'] = city;
-    data['state'] = state;
-    data['country'] = country;
-    data['zip'] = zip;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['address'] = this.address;
+    data['neighborhood'] = this.neighborhood;
+    data['city'] = this.city;
+    data['state'] = this.state;
+    data['country'] = this.country;
+    data['zip'] = this.zip;
     return data;
   }
 }
@@ -197,9 +202,9 @@ class CheckInOut {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['checkIn'] = checkIn;
-    data['checkOut'] = checkOut;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['checkIn'] = this.checkIn;
+    data['checkOut'] = this.checkOut;
     return data;
   }
 }
@@ -211,19 +216,20 @@ class Rules {
   Rules({this.during, this.beforeLeaving});
 
   Rules.fromJson(Map<String, dynamic> json) {
-    during = json['during'] != null ? During.fromJson(json['during']) : null;
+    during =
+        json['during'] != null ? new During.fromJson(json['during']) : null;
     beforeLeaving = json['beforeLeaving'] != null
-        ? BeforeLeaving.fromJson(json['beforeLeaving'])
+        ? new BeforeLeaving.fromJson(json['beforeLeaving'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (during != null) {
-      data['during'] = during!.toJson();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.during != null) {
+      data['during'] = this.during!.toJson();
     }
-    if (beforeLeaving != null) {
-      data['beforeLeaving'] = beforeLeaving!.toJson();
+    if (this.beforeLeaving != null) {
+      data['beforeLeaving'] = this.beforeLeaving!.toJson();
     }
     return data;
   }
@@ -241,9 +247,9 @@ class During {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['list'] = list;
-    data['forbidden'] = forbidden;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['list'] = this.list;
+    data['forbidden'] = this.forbidden;
     return data;
   }
 }
@@ -258,8 +264,8 @@ class BeforeLeaving {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['list'] = list;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['list'] = this.list;
     return data;
   }
 }

@@ -1,7 +1,7 @@
 name: stay_floripa
 description: "Casas familiares em Florianopolis."
 
-version: 1.0.0+1
+version: 1.0.0+3
 
 environment:
   sdk: ">=3.2.3 <4.0.0"
@@ -34,5 +34,5 @@ flutter:
   assets:
     - assets/
     - assets/images/
-    - assets/images/1/
-    - assets/images/2/
+    - assets/images/pantano_do_sul/
+    - assets/images/vargem_pequena/

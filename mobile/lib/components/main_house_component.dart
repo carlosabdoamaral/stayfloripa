@@ -33,7 +33,7 @@ class _MainHouseComponentState extends State<MainHouseComponent> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.asset(
-                      'assets/images/${widget.house.id}/${widget.house.id}.png',
+                      widget.house.images![0],
                       fit: BoxFit.cover,
                     ),
                   ),

@@ -186,8 +186,8 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
               enlargeFactor: 0.3,
               scrollDirection: Axis.horizontal,
             ),
-            items: [1, 2, 3].map(
-              (h) {
+            items: widget.house.images?.map(
+              (image) {
                 return Builder(
                   builder: (BuildContext context) {
                     return Container(
@@ -198,7 +198,7 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
-                          'assets/images/${widget.house.id}.png',
+                          image,
                           fit: BoxFit.cover,
                           height: deviceHeight * 0.2,
                           width: double.infinity,
