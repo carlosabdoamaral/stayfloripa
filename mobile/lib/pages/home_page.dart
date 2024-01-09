@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:stay_floripa/components/main_house_component.dart';
 import 'package:stay_floripa/models/house_model.dart';
 import 'package:flutter/material.dart';

@@ -48,8 +48,8 @@ class _ContactModalState extends State<ContactModal> {
             onTap: () {
               sendEmail(
                 widget.house.contact!.email!,
+                widget.house.title!,
                 "Olá ${widget.house.contact!.name}! Gostaria de falar sobre o imóvel ${widget.house.title}",
-                "",
               );
             },
             child: ListTile(

@@ -26,12 +26,8 @@ class RentService {
   String message = "";
 
   String _buildMessage(SendRentMessageModel props) {
-    message = """
-    Olá ${props.house.contact?.name}, me chamo ${props.name}.
-    Gostaria de alugar o imóvel ${props.house.title} nos dias ${formatDate(props.dateRange.start)} até ${formatDate(props.dateRange.end)}.
-    Estarei com ${props.guestCount} pessoas.
-    O aplicativo calculou um valor total de ${getAmountFormatted(props.amount)}.
-    """;
+    message =
+        "Olá ${props.house.contact?.name}, me chamo ${props.name}. Gostaria de alugar o imóvel ${props.house.title} nos dias ${formatDate(props.dateRange.start)} até ${formatDate(props.dateRange.end)}. Estarei com ${props.guestCount} pessoas. O aplicativo calculou um valor total de ${getAmountFormatted(props.amount)}. ";
 
     if (props.notes.isNotEmpty) {
       message +=

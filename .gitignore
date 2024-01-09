@@ -69,3 +69,7 @@ app.*.map.json
 keystore/encryption_public_key.pem
 keystore/pepk.jar
 keystore/upload.jks
+mobile/android/app/google-services.json
+mobile/ios/firebase_app_id_file.json
+mobile/ios/Runner/GoogleService-Info.plist
+mobile/lib/firebase_options.dart
