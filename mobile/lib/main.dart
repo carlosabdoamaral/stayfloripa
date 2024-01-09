@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:stay_floripa/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,6 +29,11 @@ class MyApp extends StatelessWidget {
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
+          if (Platform.isIOS) {
+            FirebaseMessaging.instance.requestPermission();
+            FirebaseMessaging.instance.getToken().then((value) => print(value));
+          }
+
           return MaterialApp(
             title: 'StayFloripa',
             debugShowCheckedModeBanner: false,
