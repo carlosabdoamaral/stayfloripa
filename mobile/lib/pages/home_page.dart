@@ -53,6 +53,23 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
 
+    String formatString(String str) {
+      var comAcento =
+          'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
+      var semAcento =
+          'AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz';
+
+      for (int i = 0; i < comAcento.length; i++) {
+        str = str.replaceAll(comAcento[i], semAcento[i]);
+      }
+
+      return str.toUpperCase();
+    }
+
+    bool stringContains(String findInString, String searchString) {
+      return formatString(findInString).contains(formatString(searchString));
+    }
+
     Widget buildSearchBar() {
       return TapRegion(
         onTapOutside: (event) => {FocusScope.of(context).unfocus()},
@@ -65,11 +82,35 @@ class _HomePageState extends State<HomePage> {
           child: TextFormField(
             controller: searchTextController,
             onChanged: (value) {
-              setState(() {
-                housesShowing = houses
-                    .where((element) => element.title!.contains(value))
-                    .toList();
-              });
+              setState(
+                () {
+                  housesShowing = houses
+                      .where(
+                        (element) =>
+                            stringContains(element.title!, value) ||
+                            stringContains(element.description!, value) ||
+                            //
+                            stringContains(element.location!.address!, value) ||
+                            stringContains(element.location!.city!, value) ||
+                            stringContains(element.location!.state!, value) ||
+                            stringContains(
+                                element.location!.neighborhood!, value) ||
+                            stringContains(element.location!.zip!, value) ||
+                            //
+                            stringContains(element.contact!.name!, value) ||
+                            stringContains(element.contact!.email!, value) ||
+                            stringContains(element.contact!.phone!, value) ||
+                            //
+                            stringContains(
+                                element.maxGuests.toString(), value) ||
+                            //
+                            stringContains(element.about!.access!, value) ||
+                            stringContains(element.about!.notes!, value) ||
+                            stringContains(element.about!.space!, value),
+                      )
+                      .toList();
+                },
+              );
             },
             decoration: const InputDecoration(
               labelText: 'Busque por uma casa',
