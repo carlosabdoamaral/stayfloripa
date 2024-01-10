@@ -356,17 +356,50 @@ class _HouseDetailsPageState extends State<HouseDetailsPage> {
                 buildAddressSection(),
                 SizedBox(height: deviceHeight * 0.03),
 
-                // Descrição
-                buildSection("Descrição", widget.house.description!),
-                SizedBox(height: deviceHeight * 0.03),
+                //Details
+                if (widget.house.description != null &&
+                    widget.house.description!.isNotEmpty)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Descrição
+                      buildSection("Descrição", widget.house.description!),
+                      SizedBox(height: deviceHeight * 0.03),
+                    ],
+                  ),
 
-                // O espaço
-                buildSection("Espaço", widget.house.about!.space!),
-                SizedBox(height: deviceHeight * 0.03),
+                if (widget.house.about?.space != null &&
+                    widget.house.about!.space!.isNotEmpty)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // O espaço
+                      buildSection("Espaço", widget.house.about!.space!),
+                      SizedBox(height: deviceHeight * 0.03),
+                    ],
+                  ),
 
-                // Acesso
-                buildSection("Acesso", widget.house.about!.access!),
-                SizedBox(height: deviceHeight * 0.03),
+                if (widget.house.about?.access != null &&
+                    widget.house.about!.access!.isNotEmpty)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Acesso
+                      buildSection("Acesso", widget.house.about!.access!),
+                      SizedBox(height: deviceHeight * 0.03),
+                    ],
+                  ),
+
+                if (widget.house.about?.notes != null &&
+                    widget.house.about!.notes!.isNotEmpty)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Acesso
+                      buildSection("Observações", widget.house.about!.notes!),
+                      SizedBox(height: deviceHeight * 0.03),
+                    ],
+                  ),
 
                 buildRulesSection()
               ],

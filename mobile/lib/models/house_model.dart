@@ -157,40 +157,18 @@ class Count {
 
 class Location {
   String? address;
-  String? neighborhood;
-  String? city;
-  String? state;
-  String? country;
-  String? zip;
   String? mapsURL;
 
-  Location(
-      {this.address,
-      this.neighborhood,
-      this.city,
-      this.state,
-      this.country,
-      this.zip,
-      this.mapsURL});
+  Location({this.address, this.mapsURL});
 
   Location.fromJson(Map<String, dynamic> json) {
     address = json['address'];
-    neighborhood = json['neighborhood'];
-    city = json['city'];
-    state = json['state'];
-    country = json['country'];
-    zip = json['zip'];
     mapsURL = json['mapsURL'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['address'] = this.address;
-    data['neighborhood'] = this.neighborhood;
-    data['city'] = this.city;
-    data['state'] = this.state;
-    data['country'] = this.country;
-    data['zip'] = this.zip;
     data['mapsURL'] = this.mapsURL;
     return data;
   }

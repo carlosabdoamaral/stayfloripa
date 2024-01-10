@@ -91,11 +91,6 @@ class _HomePageState extends State<HomePage> {
                             stringContains(element.description!, value) ||
                             //
                             stringContains(element.location!.address!, value) ||
-                            stringContains(element.location!.city!, value) ||
-                            stringContains(element.location!.state!, value) ||
-                            stringContains(
-                                element.location!.neighborhood!, value) ||
-                            stringContains(element.location!.zip!, value) ||
                             //
                             stringContains(element.contact!.name!, value) ||
                             stringContains(element.contact!.email!, value) ||

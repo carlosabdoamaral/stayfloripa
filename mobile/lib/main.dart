@@ -34,9 +34,14 @@ class MyApp extends StatelessWidget {
             FirebaseMessaging.instance.getToken().then((value) => print(value));
           }
 
+          FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
           return MaterialApp(
             title: 'StayFloripa',
             debugShowCheckedModeBanner: false,
+            navigatorObservers: [
+              FirebaseAnalyticsObserver(analytics: analytics)
+            ],
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
               useMaterial3: true,

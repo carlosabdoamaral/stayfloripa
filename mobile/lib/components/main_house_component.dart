@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:stay_floripa/components/price_overlay_component.dart';
 import 'package:stay_floripa/models/house_model.dart';
 import 'package:stay_floripa/pages/house_details_controller.dart';
@@ -15,6 +16,41 @@ class MainHouseComponent extends StatefulWidget {
 }
 
 class _MainHouseComponentState extends State<MainHouseComponent> {
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  void openDetails() async {
+    analytics.logEvent(
+      name: 'open_house_details_page',
+      parameters: <String, dynamic>{
+        'house_id': widget.house.id,
+      },
+    );
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => HouseDetailsPageController(
+          house: widget.house,
+        ),
+      ),
+    );
+  }
+
+  void openRent() {
+    analytics.logEvent(
+      name: 'open_rent_house_page',
+      parameters: <String, dynamic>{
+        'house_id': widget.house.id,
+      },
+    );
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => RentHousePage(
+          house: widget.house,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -68,13 +104,7 @@ class _MainHouseComponentState extends State<MainHouseComponent> {
             children: [
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => HouseDetailsPageController(
-                        house: widget.house,
-                      ),
-                    ),
-                  );
+                  openDetails();
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -93,13 +123,7 @@ class _MainHouseComponentState extends State<MainHouseComponent> {
               const Spacer(),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => RentHousePage(
-                        house: widget.house,
-                      ),
-                    ),
-                  );
+                  openRent();
                 },
                 child: Container(
                   padding:
